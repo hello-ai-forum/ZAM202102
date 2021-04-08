@@ -3,6 +3,10 @@
 
 今号は（執筆者一人ということもあり） LaTeX で書きました。
 
+## リンク
+
+* ZENKEI AI FORUM 2021年2月のイベント： [YouTube](https://youtu.be/9Y7O6bYCq4s)
+
 ## 公開ページ
 
 * [https://zenkei-ai-forum.github.io/ZAM202102/](https://zenkei-ai-forum.github.io/ZAM202102/)
