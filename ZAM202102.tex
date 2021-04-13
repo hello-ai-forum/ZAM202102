@@ -30,6 +30,9 @@
 \usepackage[T1]{fontenc}
 
 
+\usepackage{eso-pic}
+
+
 %\usepackage[dvipdfmx]{hyperref}
 \usepackage[hidelinks]{hyperref}
 \usepackage{pxjahyper}
@@ -60,8 +63,25 @@
 
 %\maketitle
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-cover-3-bw-masked.jpg}
+  }%
+}%
 {\small
 \tableofcontents
+
+\begin{tikzpicture}[remember picture,overlay]
+\node[yshift=-9em,yscale=1.2,xslant=0.25,color=Gray] (text)
+  at (current page.north){%
+  \sffamily \large
+  %【月刊 ZENKEI AI MAGAZINE 2021年2月号】};
+  【月刊 ZENKEI AI MAGAZINE ２０２１年２月号】};
+%\node[anchor=south,yscale=0.8] at (text.north){%
+%  \pgfornament[width=\textwidth]{71}};
+\end{tikzpicture}
 }
 
 % 0
@@ -80,13 +100,25 @@
 \chapter*{まえがき}
 \addcontentsline{toc}{chapter}{まえがき}
 \begin{tikzpicture}[
+  remember picture, overlay]
+\node[yshift=-8em,yscale=1.2,xslant=0.25,color=Gray] (text)
+  at (current page.north){%
+  \sffamily \large
+  %【月刊 ZENKEI AI MAGAZINE 2021年2月号】};
+  【月刊 ZENKEI AI MAGAZINE ２０２１年２月号】};
+\node[anchor=south,yscale=0.8,color=BlueViolet]
+  at (text.north){%
+  \pgfornament[width=\textwidth]{71}};
+\end{tikzpicture}
+\begin{tikzpicture}[
     remember picture, overlay,
-      color=Maroon,
+      %color=Maroon,
+      color=BlueViolet,
       transform shape,
-      %xscale=1.1, yscale=0.55,
-      %xshift=9cm, yshift=9cm,
-      xscale=1.1, yscale=0.75,
-      xshift=9cm, yshift=5.8cm,
+      %xscale=1.1, yscale=0.75,
+      %xshift=9cm, yshift=5.8cm,
+      scale=0.6,
+      xshift=11cm, yshift=-18.5cm,
       every node/.style={inner sep=0pt}]
   \node[minimum size=10cm,inner sep=0pt](vecbox){};
   % コーナー
@@ -100,7 +132,7 @@
   % 左右
   \node[anchor=north,rotate=90] at (vecbox.west){\pgfornament[width=6cm,symmetry=h]{46}};
   \node[anchor=north,rotate=-90] at (vecbox.east){\pgfornament[width=6cm,symmetry=h]{46}};
-  \node[inner sep=6pt] (text) at (vecbox.center){\calligra \huge
+  \node[inner sep=6pt,color=black] (text) at (vecbox.center){\calligra \huge
     Zenkei AI Magazine};
   \node[anchor=north] at (text.south){\pgfornament[width=5cm]{75}};
   \node[anchor=south] at (text.north){\pgfornament[width=5cm,symmetry=h]{75}};
@@ -125,7 +157,7 @@ ZAM という車輪をきちんと前に回すために、
 この２本目の雑誌を今は粛々と書いていこうと思います。
 
 \begin{flushright}
-  2021年4月7日\\
+  2021年3月31日\\
   金沢にて\\
   ZENKEI AI MAGAZINE 編集長\\
   市來健吾
@@ -197,18 +229,20 @@ ZOOM には Matt さんとあらんさんがきてくれて、
 
 内容は、これから紹介していくように、以下の３つのトピックを話しました。
 \begin{itemize}
-\item 第 \ref{ch:zenza} 章 はじめに :\\
+\item \textgt{\bfseries \sffamily
+  【第 \ref{ch:zenza} 章】 はじめに :}\\
   ここ１ヶ月の時事ネタから話題をピックアップ
-\item 第 \ref{ch:ai-news} 章 AI 最近の話題から :\\
+\item \textgt{\bfseries \sffamily
+  【第 \ref{ch:ai-news} 章】 AI 最近の話題から :}\\
   最近画像分類で SOTA を更新したと話題の NFNets を紹介
-\item 第 \ref{ch:zam} 章 『月刊 ZENKEI AI MAGAZINE』創刊 :\\
+\item \textgt{\bfseries \sffamily
+  【第 \ref{ch:zam} 章】 『月刊 ZENKEI AI MAGAZINE』創刊 :}\\
   １月のフォーラムで創刊すると宣言した ZAM を実際に刊行したというはなし
 \end{itemize}
 
-\vspace{3cm}
+\vspace{1cm}
 
 \begin{center}
-%\color{Maroon}
 \color{teal}
 \begin{tikzpicture}
 \node[regular polygon, regular polygon sides=7, 
@@ -228,10 +262,11 @@ ZOOM には Matt さんとあらんさんがきてくれて、
 \color{black}
 \end{center}
 
+\vspace{2cm}
+
 % 2
 \begin{tikzpicture}[remember picture, overlay]
   \begin{scope}[thick,rounded corners=8pt,
-      %xscale=1.3, xshift=-1.75cm, yshift=-2.5cm] at (current page.south)
       xscale=1.3, xshift=-1.75cm, yshift=-3.5cm] at (current page.south)
   \draw (0, 2) -- (2.5, 2) -- (1.5, 0) -- (3, 0);
   \draw (3, 0) -- (4, 2) -- (5, 0);
@@ -953,7 +988,9 @@ ZAF の活動については、その時々に、あれこれ考えていて、
 \subsection{静かな活動}
 １つ目は
 ``{\bfseries Jazz The New Chapter}'' という
-（きちんとした）商業雑誌を運営している柳樂光隆さん
+%（きちんとした）
+（わたしたちのような同人誌ではなく、きちんとした）
+商業雑誌を運営している柳樂光隆さん
 (\href{https://twitter.com/Elis_ragiNa/}{Elis\_ragiNa})
 のツイート
 (\url{https://twitter.com/Elis_ragiNa/status/1361522687621828608})
@@ -1400,7 +1437,7 @@ PDF 版は \url{https://zenkei-ai-forum.github.io/ZAM202101/ZAM202101-v2.pdf}
   };  
 \end{tikzpicture}
 
-\vspace{0.15\textheight}
+\vspace{0.175\textheight}
 
 \begin{center}
   web 版『月刊 ZAM』創刊号のスクショ
@@ -1431,7 +1468,7 @@ PDF 版は \url{https://zenkei-ai-forum.github.io/ZAM202101/ZAM202101-v2.pdf}
   };  
 \end{tikzpicture}
 
-\vspace{0.2\textheight}
+\vspace{0.175\textheight}
 
 \begin{center}
   PDF 版『月刊 ZAM』創刊号のスクショ
@@ -1450,7 +1487,7 @@ PDF 版は \url{https://zenkei-ai-forum.github.io/ZAM202101/ZAM202101-v2.pdf}
 \item どの号も基本的に同じデザイン
 \item 各号ごとに全く異なるデザイン
 \end{itemize}
-前者が majority かな、背景写真くらいが入れ替わったくらいで、
+前者が majority かな？背景写真くらいが入れ替わったくらいで、
 雑誌のタイトルが大きく入り、そのデザインはずっと同じデザインのタイプ。
 後者は、各号おそらくデザイナーが変わって、内容に応じたデザインを採用するタイプ。
 各号の特集に応じてガラッと異なった表紙デザインになっている
@@ -1503,6 +1540,18 @@ Pat Metheny Group は印象的でした。
   };  
 \end{tikzpicture}
 
+% 5
+\begin{tikzpicture}[remember picture, overlay]
+  \begin{scope}[thick,rounded corners=8pt,
+      xscale=1.3, yscale=1.3, xshift=-1.75cm, yshift=-15.8cm]
+  \draw (0, 2) -- (5, 2) -- (4, 0) -- (5.5, 0);
+  \draw (5.5, 0) -- (6.5, 2) -- (7.5, 0);
+  \draw (7.5, 0) -- (8.5, 0);
+  \draw (3.5, 0.8) -- (7.5, 0.8)
+    -- (8.2, 2) -- (9.2, 0) -- (10.2, 2) -- (10.2, 0) -- (14, 0);
+  \end{scope}
+\end{tikzpicture}
+
 \newpage
 
 \begin{multicols}{2}
@@ -1525,7 +1574,7 @@ furukawa さんにお願いしました。
 
 \end{multicols}
 
-% 5
+% 5 - triple thickening
 \begin{tikzpicture}[remember picture, overlay]
   \begin{scope}[thick,rounded corners=8pt,
       xscale=1.3, yscale=1.3, xshift=-1.75cm, yshift=-6.5cm]
@@ -1565,6 +1614,17 @@ furukawa さんにお願いしました。
 
 \chapter*{編集後記}
 \addcontentsline{toc}{chapter}{編集後記}
+\begin{tikzpicture}[
+  remember picture, overlay]
+\node[yshift=-8em,yscale=1.2,xslant=0.25,color=Gray] (text)
+  at (current page.north){%
+  \sffamily \large
+  %【月刊 ZENKEI AI MAGAZINE 2021年2月号】};
+  【月刊 ZENKEI AI MAGAZINE ２０２１年２月号】};
+\node[anchor=south,yscale=0.8,color=BlueViolet]
+  at (text.north){%
+  \pgfornament[width=\textwidth]{71}};
+\end{tikzpicture}
 本文にもたくさん（愚痴のように）書きましたが、
 なんとか『月刊 ZENKEI AI MAGAZIN』の２冊目、
 2021年2月号が仕上がりました。
@@ -1647,7 +1707,6 @@ ZENKEI AI FORUM の文字化、ということで、
 
 　%全角スペース
 
-%\vspace{5cm}
 \vspace{3cm}
 
 \begin{center}
@@ -1670,7 +1729,9 @@ ZENKEI AI FORUM の文字化、ということで、
   ありがとうございます。
 } ;
 %\color{teal}
-\color{olive}
+%\color{olive}
+\color{BlueViolet}
+%\color{RedViolet}
 \node[shift={(-1cm,1cm)},anchor=north west](CNW)  at (Text.north west)
                {\pgfornament[width=2cm]{61}};
 \node[shift={(1cm,1cm)},anchor=north east](CNE)   at (Text.north east)
@@ -1698,6 +1759,14 @@ ZENKEI AI FORUM の文字化、ということで、
         \hbox{}\newpage\thispagestyle{empty}
     \fi
 \makeatother
+
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-cover-2-bw-masked.jpg}
+  }%
+}%
 \vspace*{\fill}
 
 % 奥付
