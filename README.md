@@ -10,7 +10,8 @@
 ## 公開ページ
 
 * [https://zenkei-ai-forum.github.io/ZAM202102/](https://zenkei-ai-forum.github.io/ZAM202102/)
-* [PDF ファイル](https://zenkei-ai-forum.github.io/ZAM202102/ZAM202102-v3.pdf)
+* [PDF ファイル](https://zenkei-ai-forum.github.io/ZAM202102/ZAM202102-v4.pdf)
+* コピー本印刷用[PDF ファイル](https://zenkei-ai-forum.github.io/ZAM202102/ZAM202102-v4_for-print.pdf)
 
 ## 使用したスタイル、パッケージなど
 
