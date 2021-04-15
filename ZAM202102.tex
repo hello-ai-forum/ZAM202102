@@ -1,22 +1,21 @@
 %\documentclass[dvipdfmx,autodetect-engine,10pt,b5paper,papersize,openany]{jsbook}
 \documentclass[dvipdfmx,autodetect-engine,10pt,b5paper,papersize,openany,dvipsnames]{jsbook}
 
-
 \usepackage{color}
 \usepackage{titlesec}
 \usepackage{multicol}
 
-% https://tex.stackexchange.com/questions/12262/multicol-and-figures
-%\newenvironment{Figure}
-%  {\par\medskip\noindent\minipage{\linewidth}}
-%  {\endminipage\par\medskip}
-
-% https://puarts.com/?pid=1014
+\usepackage{etoolbox}
+\usepackage{fancyhdr}
 \makeatletter
-\newenvironment{Figure}
-  {\def\@captype{figure}}
-  {}
+\patchcmd{\f@nch@head}{\rlap}{\color{white}\rlap}{}{}
+\patchcmd{\headrule}{\hrule}{\color{white}\hrule}{}{}
 \makeatother
+
+
+\usepackage[deluxe]{otf}
+\renewcommand{\kanjifamilydefault}{\gtdefault}
+\renewcommand{\familydefault}{\sfdefault}
 
 \usepackage{amsmath,txfonts}
 \usepackage{bm}
@@ -53,10 +52,10 @@
 \newcommand{\bhline}[1]{\noalign{\hrule height #1}}
 
 \title{
-  \textbf{月刊 ZENKEI AI MAGAZINE\\
+  {\gtfamily\bfseries 月刊 ZENKEI AI MAGAZINE\\
   ２０２０年２月号}
 }
-\author{\textbf{\textsf{ZENKEI AI FORUM}}}
+\author{\sffamily\bfseriesZENKEI AI FORUM}
 \date{}
 
 \begin{document}
@@ -67,7 +66,7 @@
   \AtPageLowerLeft{%
     % Your background image here
     \includegraphics[width=\paperwidth,height=\paperheight]%
-      {images/ZAM202102-cover-3-bw-masked.jpg}
+      {images/ZAM202102-cover-3-v2-masked.jpg}
   }%
 }%
 {\small
@@ -77,7 +76,6 @@
 \node[yshift=-9em,yscale=1.2,xslant=0.25,color=Gray] (text)
   at (current page.north){%
   \sffamily \large
-  %【月刊 ZENKEI AI MAGAZINE 2021年2月号】};
   【月刊 ZENKEI AI MAGAZINE ２０２１年２月号】};
 %\node[anchor=south,yscale=0.8] at (text.north){%
 %  \pgfornament[width=\textwidth]{71}};
@@ -99,12 +97,18 @@
 
 \chapter*{まえがき}
 \addcontentsline{toc}{chapter}{まえがき}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p02-bg.jpg}
+  }%
+}%
 \begin{tikzpicture}[
   remember picture, overlay]
 \node[yshift=-8em,yscale=1.2,xslant=0.25,color=Gray] (text)
   at (current page.north){%
   \sffamily \large
-  %【月刊 ZENKEI AI MAGAZINE 2021年2月号】};
   【月刊 ZENKEI AI MAGAZINE ２０２１年２月号】};
 \node[anchor=south,yscale=0.8,color=BlueViolet]
   at (text.north){%
@@ -136,7 +140,8 @@
     Zenkei AI Magazine};
   \node[anchor=north] at (text.south){\pgfornament[width=5cm]{75}};
   \node[anchor=south] at (text.north){\pgfornament[width=5cm,symmetry=h]{75}};
-\end{tikzpicture} 
+\end{tikzpicture}
+{\mcfamily\rmfamily
 ２０２１年１月からスタートした ZENKEI AI MAGAZINE (ZAM) の２月号です。
 プロジェクトは立ち上がりがとても大切です。
 特に継続するかしないかは、一歩目よりも二歩目が、
@@ -162,6 +167,7 @@ ZAM という車輪をきちんと前に回すために、
   ZENKEI AI MAGAZINE 編集長\\
   市來健吾
 \end{flushright}
+}
 
 % 1
 \begin{tikzpicture}[remember picture, overlay]
@@ -178,7 +184,7 @@ ZAM という車輪をきちんと前に回すために、
 
 
 \titleformat{\chapter}[block]
-{\bfseries \Huge} % style
+{\gtfamily\bfseries \Huge} % style
 {
   \begin{tikzpicture}[remember picture, overlay]
     \node[xshift=0cm,yshift=-4.2cm] at (current page.north){%
@@ -227,17 +233,24 @@ ZOOM には Matt さんとあらんさんがきてくれて、
 みなさん、いつもありがとうございます。
 
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p04-bg.jpg}
+  }%
+}%
 内容は、これから紹介していくように、以下の３つのトピックを話しました。
 \begin{itemize}
-\item \textgt{\bfseries \sffamily
-  【第 \ref{ch:zenza} 章】 はじめに :}\\
+\item {\gtfamily\bfseries  
+  【第 \ref{ch:zenza} 章】 はじめに}\\
   ここ１ヶ月の時事ネタから話題をピックアップ
-\item \textgt{\bfseries \sffamily
-  【第 \ref{ch:ai-news} 章】 AI 最近の話題から :}\\
+\item {\gtfamily\bfseries  
+  【第 \ref{ch:ai-news} 章】 AI 最近の話題から}\\
   最近画像分類で SOTA を更新したと話題の NFNets を紹介
-\item \textgt{\bfseries \sffamily
-  【第 \ref{ch:zam} 章】 『月刊 ZENKEI AI MAGAZINE』創刊 :}\\
-  １月のフォーラムで創刊すると宣言した ZAM を実際に刊行したというはなし
+\item {\gtfamily\bfseries  
+  【第 \ref{ch:zam} 章】 『月刊 ZENKEI AI MAGAZINE』創刊}\\
+  １月のフォーラムで創刊すると宣言した ZAM を実際に刊行
 \end{itemize}
 
 \vspace{1cm}
@@ -292,7 +305,6 @@ ZOOM には Matt さんとあらんさんがきてくれて、
 いつも通り「前座」をやりました。
 内容は、時事ネタを３つほど取り上げて、しゃべりました。
 
-
 \begin{multicols}{2}
 
 \section{追悼 Chick Corea}
@@ -335,6 +347,13 @@ Jazz Pianist の Chick Corea 氏が亡くなったというニュースでした
 LA でのライブは当時結成したアコースティックなバンド Origin で、
 既に持ってた CD を持って行って、
 そこにメンバー全員のサインをもらったのはいい思い出です。
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p06-bg.jpg}
+  }%
+}%
 
 \begin{tikzpicture}[remember picture, overlay]
   \node[xshift=-4.6cm,yshift=-8.3cm] at (current page.center){
@@ -394,7 +413,7 @@ Pianist としての Chick がわたしにとっての Chick です。
   };  
 \end{tikzpicture}
 
-\vspace{7cm}
+\vspace{6.5cm}
 
 みなさんは英語は得意ですか？
 授業や受験でたくさん英単語を覚えましたね？
@@ -406,6 +425,7 @@ Pianist としての Chick がわたしにとっての Chick です。
 わたしがこの英単語にカタカナを当てるとすると
 「パーシ{\bfseries ビ}アランス」ですが、ニュースなどを見ると
 「パーサヴィアランス」という表記を使っていますね。
+（「{\bfseries 太字}」はアクセントという気持ち。）
 
 と、前振りが長くなりましたが、
 このひと月の間に起こった出来事のもう１つの話題は
@@ -428,6 +448,13 @@ Pianist としての Chick がわたしにとっての Chick です。
 \end{quotation}
 
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p08-bg.jpg}
+  }%
+}%
 \subsection{大丸拓郎さん}
 今回この火星探査機 Perseverance のことを知ったきっかけの１つに、
 現在 NASA JPL で働いている日本人の大丸拓郎さんの Twitter の一連の投稿がありました。
@@ -483,7 +510,8 @@ Pianist としての Chick がわたしにとっての Chick です。
 % 3
 \begin{tikzpicture}[remember picture, overlay]
   \begin{scope}[thick,rounded corners=8pt,
-      xscale=1.3, yscale=0.7, xshift=-7.5cm, yshift=-6.1cm]
+      %xscale=1.3, yscale=0.7, xshift=-7.5cm, yshift=-6.1cm]
+      xscale=1.3, yscale=0.7, xshift=-7.5cm, yshift=-6.8cm]
   \draw (0, 2) -- (3.5, 2) -- (2.5, 0) -- (4, 0);
   \draw (4, 0) -- (5, 2) -- (6, 0);
   \draw (6, 0) -- (7, 0);
@@ -513,6 +541,13 @@ Pianist としての Chick がわたしにとっての Chick です。
 \vspace{15cm}
 
 \section{今日の数理ネタ}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p09-bg.jpg}
+  }%
+}%
 『数理クイズ』の、これまでのまとめ（つまり回答編）を「やります！」
 と言い続けて数か月がたちますが、すみません。
 今月もバタバタしていて準備ができていません。
@@ -547,6 +582,13 @@ Pianist としての Chick がわたしにとっての Chick です。
 
 \chapter{AI 最近の話題から}
 \label{ch:ai-news}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p10-bg.jpg}
+  }%
+}%
 
 \begin{tikzpicture}[remember picture, overlay]
   %\node[xshift=-2.05cm,yshift=-2.93cm] at (current page.north east){
@@ -873,6 +915,13 @@ ResNet と比較して良い結果は得られなかったようです。
 
 \vspace{2cm}
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p15-bg.jpg}
+  }%
+}%
 \color{Maroon}
 \begin{center}
 \begin{tikzpicture}
@@ -883,11 +932,11 @@ ResNet と比較して良い結果は得られなかったようです。
    \draw (h.corner \i) to [ornament=84] (h.corner \next);
    \pgfmathtruncatemacro{\next}{mod(\next,5)} }
 \node[inner sep=6pt,yshift=1cm] (text) at (h.center){
-  \Huge \bfseries \sffamily ZENKEI};
+  \Huge \sffamily \bfseries ZENKEI};
 \node[inner sep=6pt] (text) at (h.center){
-  \Huge \bfseries \sffamily AI};
+  \Huge \sffamily \bfseries AI};
 \node[inner sep=6pt,yshift=-1cm] (text) at (h.center){
-  \Huge \bfseries \sffamily MAGAZINE};
+  \Huge \sffamily \bfseries MAGAZINE};
 \end{tikzpicture}
 \end{center}
 \color{black}
@@ -906,6 +955,55 @@ ResNet と比較して良い結果は得られなかったようです。
   \end{scope}
 \end{tikzpicture}
 
+\newpage
+
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-cover-2-v2.jpg}
+  }%
+}%
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \node[xshift=2.12cm,yshift=-2.93cm] at (current page.north west){
+    %\textcolor{white}{\bfseries \thepage}
+    {\bfseries \thepage}
+  };  
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture, overlay]
+  \node[xshift=-1.0cm,yshift=0.3cm] at (current page.south east){
+    {\small \sffamily illustration}
+  };  
+\end{tikzpicture}
+
+　% 全角スペース
+
+\newpage
+
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-cover-3-v2.jpg}
+  }%
+}%
+\thispagestyle{empty}
+\begin{tikzpicture}[remember picture, overlay]
+  \node[xshift=-2.05cm,yshift=-2.93cm] at (current page.north east){
+    %\textcolor{white}{\bfseries \thepage}
+    {\bfseries \thepage}
+  };  
+\end{tikzpicture}
+
+\begin{tikzpicture}[remember picture, overlay]
+  \node[xshift=1.0cm,yshift=0.3cm] at (current page.south west){
+    {\small \sffamily furukawa}
+  };  
+\end{tikzpicture}
+　% 全角スペース
+
+\newpage
 
 \chapter{『月刊 ZENKEI AI MAGAZINE』創刊}
 \label{ch:zam}
@@ -985,6 +1083,13 @@ ZAF の活動については、その時々に、あれこれ考えていて、
 そんな中、最近、共感したツイートがありましたので、
 ここで２つほど紹介したいと思います。
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p19-bg.jpg}
+  }%
+}%
 \subsection{静かな活動}
 １つ目は
 ``{\bfseries Jazz The New Chapter}'' という
@@ -1036,6 +1141,13 @@ ZAF の活動については、その時々に、あれこれ考えていて、
 詳しくは ZAP サイト \url{https://zenkei.seesaa.net/} をご覧ください。
 
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p20-bg.jpg}
+  }%
+}%
 \subsection{アンドレ・ヴェイユ}
 もう１つのツイートは「数学の歩みbot」さん
 (\href{https://twitter.com/Auf_Jugendtraum}{Auf\_Jugendtraum})
@@ -1110,6 +1222,13 @@ ZAF の活動については、その時々に、あれこれ考えていて、
 
 \vspace{6.8cm}
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p21-bg.jpg}
+  }%
+}%
 自分の子供のころからのことを振り返ると、
 今の自分って実際のところ雑誌で育ってきたんだなと思います。
 具体的に読んできた、影響を受け刺激を受けてきた雑誌を挙げると、
@@ -1142,7 +1261,7 @@ ZAF の活動については、その時々に、あれこれ考えていて、
 脱線しました。
 いずれにせよ ZAF 2021年1月のイベントで
 \begin{center}
-  \Large \textgt{\bfseries ZAM 爆誕！}
+  \Large {\gtfamily\bfseries ZAM 爆誕！}
 \end{center}
 しました（少なくとも「やるぞ」ということだけは）。
 
@@ -1150,10 +1269,17 @@ ZAF の活動については、その時々に、あれこれ考えていて、
 
 \end{multicols}
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p22-bg.jpg}
+  }%
+}%
 \begin{tikzpicture}[remember picture, overlay]
   \node[xshift=0cm,yshift=-5.4cm] at (current page.north){
     \includegraphics[width=1.1\textwidth]
-      {images/aiforum_20210129.JPG}
+      {images/aiforum_20210129.png}
   };  
 \end{tikzpicture}
 
@@ -1533,29 +1659,156 @@ Pat Metheny Group は印象的でした。
 
 \vspace{6cm}
 
+\begin{multicols}{2}
+\color{white}
+
+\noindent
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+\begin{tikzpicture}[remember picture,overlay]
+\node[xshift=3.7cm,yshift=-3.80cm,xscale=-1,color=white]
+  at (current page.north){%
+    ました。実際に ZAF は話題が固定されていな};
+\node[xshift=3.7cm,yshift=-4.40cm,xscale=-1,color=white]
+  at (current page.north){%
+    いし、多様性 (diversity) こそが ZAF の目指す};
+\node[xshift=-2.6cm,yshift=-3.80cm,xscale=-1,color=white]
+  at (current page.north){%
+    ものだ、という思いもあります。};
+\node[xshift=-0.4cm,yshift=-4.40cm,color=white]
+  at (current page.north){%
+    ね};
+\end{tikzpicture}
+
+\end{multicols}
+
+\hrule
+
+\vspace{6cm}
+
+\thispagestyle{fancy}
+\lhead{\thepage}
+\chead{}
+\rhead{\leftmark}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p28-bg.jpg}
+  }%
+}%
 \begin{tikzpicture}[remember picture, overlay]
-  \node[xshift=0.0cm,yshift=1.5cm] at (current page.center){
+  %\node[xshift=0.0cm,yshift=1.5cm] at (current page.center){
+  \node[xshift=0.0cm,yshift=1.0cm] at (current page.center){
     \includegraphics[width=1.3\textwidth]
       {images/ZAM202101-cover23.jpg}
   };  
 \end{tikzpicture}
 
+\vspace{8cm}
+
+\hrule
+
+\begin{multicols}{2}
+\color{white}
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+
+　% 全角スペース
+\end{multicols}
+\begin{tikzpicture}[remember picture,overlay]
+\node[xshift=3.6cm,yshift=6.00cm,xscale=-1,color=white]
+  at (current page.south){%
+    そういうことで、創刊号の表紙デザインはわ};
+\node[xshift=3.7cm,yshift=5.50cm,xscale=-1,color=white]
+  at (current page.south){%
+    たしが担当しました。コラージュって、なんか};
+\node[xshift=3.7cm,yshift=5.00cm,xscale=-1,color=white]
+  at (current page.south){%
+    好きなんですよね。レコード（CD）のジャケッ};
+\node[xshift=3.7cm,yshift=4.50cm,xscale=-1,color=lightgray]
+  at (current page.south){%
+    トとかでも Pat Metheny Group は印象的でし};
+\node[xshift=3.7cm,yshift=4.00cm,xscale=-1,color=gray]
+  at (current page.south){%
+    た。素人デザインですが、これまでの ZAF を};
+\node[xshift=3.7cm,yshift=3.50cm,xscale=-1,color=darkgray]
+  at (current page.south){%
+    振り返りつつ、いい感じにできたと自画自賛し};
+\node[xshift=-1.0cm,yshift=6.00cm,xscale=-1,color=white]
+  at (current page.south){%
+    ています。};
+\node[xshift=-3.5cm,yshift=5.50cm,xscale=-1,color=white]
+  at (current page.south){%
+    今後、各号の表紙デザインはそのときどき、};
+\node[xshift=-3.7cm,yshift=5.00cm,xscale=-1,color=white]
+  at (current page.south){%
+    才能あふれる ZAF メンバーなどに声をかけて、};
+\node[xshift=-3.7cm,yshift=4.50cm,xscale=-1,color=lightgray]
+  at (current page.south){%
+    見た目も楽しい雑誌になったらいいな、と思っ};
+\node[xshift=-1.0cm,yshift=4.00cm,xscale=-1,color=gray]
+  at (current page.south){%
+    ています。};
+\end{tikzpicture}
 % 5
 \begin{tikzpicture}[remember picture, overlay]
-  \begin{scope}[thick,rounded corners=8pt,
-      xscale=1.3, yscale=1.3, xshift=-1.75cm, yshift=-15.8cm]
-  \draw (0, 2) -- (5, 2) -- (4, 0) -- (5.5, 0);
-  \draw (5.5, 0) -- (6.5, 2) -- (7.5, 0);
-  \draw (7.5, 0) -- (8.5, 0);
+  \begin{scope}[thick,rounded corners=8pt, color=red,
+      line width=8pt,
+      %xscale=-1.3, yscale=1.3, xshift=-12.25cm, yshift=-1.2cm]
+      xscale=-1.3, yscale=1.3, xshift=-12.2cm, yshift=-1.2cm]
+  \draw (0, 2) -- (5, 2) -- (4, 0) [sharp corners] -- (5.5, 0)
+    [rounded corners=8pt] -- (6.5, 2) [sharp corners] -- (7.5, 0)
+    -- (8.5, 0);
   \draw (3.5, 0.8) -- (7.5, 0.8)
     -- (8.2, 2) -- (9.2, 0) -- (10.2, 2) -- (10.2, 0) -- (14, 0);
   \end{scope}
 \end{tikzpicture}
 
+
 \newpage
+\thispagestyle{fancy}
+\lhead{\rightmark}
+\rhead{\thepage}
+\color{white}
 
 \begin{multicols}{2}
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p29-bg.jpg}
+  }%
+}%
 \section{終わって……ない}
 という報告を持って、
 めでたく２月の（わたし、市來健吾の独演会になってしまった）
@@ -1576,7 +1829,7 @@ furukawa さんにお願いしました。
 
 % 5 - triple thickening
 \begin{tikzpicture}[remember picture, overlay]
-  \begin{scope}[thick,rounded corners=8pt,
+  \begin{scope}[thick,rounded corners=8pt, color=white,
       xscale=1.3, yscale=1.3, xshift=-1.75cm, yshift=-6.5cm]
   \draw (0, 2) -- (5, 2) -- (4, 0) -- (5.5, 0);
   \draw (5.5, 0) -- (6.5, 2) -- (7.5, 0);
@@ -1594,7 +1847,7 @@ furukawa さんにお願いしました。
     -- (8.2, 2) -- (9.2, 0) -- (10.2, 2) -- (10.2, 0) -- (14, 0);
   \end{scope}
   \begin{scope}[thick,rounded corners=8pt,
-      line width=8pt,
+      line width=8pt, color=red,
       xscale=1.3, yscale=1.3, xshift=-1.75cm, yshift=-12.5cm]
   \draw (0, 2) -- (5, 2) -- (4, 0) [sharp corners] -- (5.5, 0)
     [rounded corners=8pt] -- (6.5, 2) [sharp corners] -- (7.5, 0)
@@ -1604,9 +1857,11 @@ furukawa さんにお願いしました。
   \end{scope}
 \end{tikzpicture}
 
+\pagecolor{white}
+\color{black}
 
 \titleformat{\chapter}[block]
-{\bfseries \Huge} % style
+{\gtfamily\bfseries \Huge} % style
 {\bfseries \huge 第 \thechapter 章\\} % label
 {0pt} % spacing
 {} % in front of the title
@@ -1614,17 +1869,25 @@ furukawa さんにお願いしました。
 
 \chapter*{編集後記}
 \addcontentsline{toc}{chapter}{編集後記}
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p31-bg.jpg}
+  }%
+}%
 \begin{tikzpicture}[
   remember picture, overlay]
 \node[yshift=-8em,yscale=1.2,xslant=0.25,color=Gray] (text)
   at (current page.north){%
   \sffamily \large
-  %【月刊 ZENKEI AI MAGAZINE 2021年2月号】};
   【月刊 ZENKEI AI MAGAZINE ２０２１年２月号】};
 \node[anchor=south,yscale=0.8,color=BlueViolet]
   at (text.north){%
   \pgfornament[width=\textwidth]{71}};
 \end{tikzpicture}
+
+{\mcfamily\rmfamily
 本文にもたくさん（愚痴のように）書きましたが、
 なんとか『月刊 ZENKEI AI MAGAZIN』の２冊目、
 2021年2月号が仕上がりました。
@@ -1635,6 +1898,12 @@ ZENKEI AI FORUM の文字化、ということで、
 と思ったりもしました。
 しかし書き終わった今、これも１つの通過儀礼だと思っています。
 
+これからも、がんばります。
+
+\begin{flushright}
+  （市來健吾）
+\end{flushright}
+}
 
 % rainbow
 \begin{tikzpicture}[remember picture, overlay,
@@ -1705,6 +1974,14 @@ ZENKEI AI FORUM の文字化、ということで、
 
 \newpage
 
+\AddToShipoutPictureBG*{%
+  \AtPageLowerLeft{%
+    % Your background image here
+    \includegraphics[width=\paperwidth,height=\paperheight]%
+      {images/ZAM202102-p31-bg.jpg}
+  }%
+}%
+
 　%全角スペース
 
 \vspace{3cm}
@@ -1712,13 +1989,13 @@ ZENKEI AI FORUM の文字化、ということで、
 \begin{center}
 \begin{tikzpicture}[every node/.style={inner sep=0pt}]   
   \node[text width=8cm,align=center](Text){%
-  {\Large \textgt{\bfseries 謝辞に代えて}}\\
+  {\Large {\gtfamily\bfseries 謝辞に代えて}}\\
   \vspace{24pt}
   ZENKEI AI FORUM のみなさま\\
   いつもありがとうございます。\\
   \bigskip
   本号は \LaTeX で版組みしました。\\
-  奥村晴彦著『LaTeX2e 美文書作成入門』の\\
+  奥村晴彦著『{\bfseries \LaTeXe 美文書作成入門}』の\\
   \texttt{jsbook} スタイルを使用しました。\\
   \bigskip
   今回はじめて使った全くの初心者ですが\\
@@ -1753,10 +2030,12 @@ ZENKEI AI FORUM の文字化、ということで、
 % 奥付ページ
 % cf. https://yamaimo.hatenablog.jp/entry/2019/09/23/200000
 \clearpage
-\thispagestyle{empty}
+%\thispagestyle{empty}
+\thispagestyle{plain}
 \makeatletter
     \ifodd\c@page
-        \hbox{}\newpage\thispagestyle{empty}
+        %\hbox{}\newpage\thispagestyle{empty}
+        \hbox{}\newpage\thispagestyle{plain}
     \fi
 \makeatother
 
@@ -1764,7 +2043,7 @@ ZENKEI AI FORUM の文字化、ということで、
   \AtPageLowerLeft{%
     % Your background image here
     \includegraphics[width=\paperwidth,height=\paperheight]%
-      {images/ZAM202102-cover-2-bw-masked.jpg}
+      {images/ZAM202102-cover-2-v2-masked.jpg}
   }%
 }%
 \vspace*{\fill}
@@ -1772,18 +2051,20 @@ ZENKEI AI FORUM の文字化、ということで、
 % 奥付
 \begin{flushleft}
   \begin{tabular*}{\textwidth}{@{}l@{\extracolsep{\fill}}}
-    \textbf{\LARGE 月刊 ZENKEI AI MAGAZINE}\\
-    \textbf{\Large ２０２１年２月号}\\
+    {\LARGE \gtfamily\bfseries 月刊 ZENKEI AI MAGAZINE}\\
+    {\Large \gtfamily\bfseries ２０２１年２月号}\\
     \bhline{1pt}
     \begin{tabular}{@{}r@{年\kern.5zw}r@{月\kern.5zw}r@{日\kern1.5zw}ll}
       2021 & 4 & 7 & 初版発行 & （オンライン）\\
+      2021 & 4 & 15 & 改訂版発行 & （第１刷）\\
     \end{tabular} \\
     \\
     \begin{tabular}{@{}l@{\kern.5zw\textbf{:}\kern1zw}l}
-      \textbf{編　集} & ZAM 編集部\\
-      \textbf{発行所} & ZENKEI AI FORUM\\
-      \textbf{連絡先} & \url{https://forum.ai.zenkei.com/} \\
-      \textbf{表　紙} & furukawa \\
+      編　集 & ZAM 編集部\\
+      発行所 & ZENKEI AI FORUM\\
+      連絡先 & \url{https://forum.ai.zenkei.com/} \\
+      表　紙 & furukawa \\
+      印刷所 & ちょ古っ都製本工房 \url{https://www.chokotto.jp/} \\
     \end{tabular} \\
     \bhline{1pt}
     \texttt{%
